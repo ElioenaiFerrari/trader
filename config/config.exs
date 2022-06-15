@@ -6,7 +6,7 @@ config :trader,
 
 config :number,
   currency: [
-    unit: "$",
+    unit: "",
     precision: 2,
     delimiter: ".",
     separator: ",",
