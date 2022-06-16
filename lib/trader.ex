@@ -3,6 +3,18 @@ defmodule Trader do
 
   alias Trader.{Binance, MercadoBitcoin, Repo.Symbols}
 
+  def init do
+    symbols = Symbols.list()
+
+    Enum.each(symbols, fn %{event_type: event_type, platform: platform, symbol: symbol} ->
+      case event_type do
+        "trades" -> trades({String.to_atom(platform), symbol})
+        "ticker" -> ticker({String.to_atom(platform), symbol})
+        _ -> Logger.warn("@Trader - Unknown event type: #{event_type}")
+      end
+    end)
+  end
+
   def trades({:binance, symbol}) do
     Logger.info("@Binance - Starting link for trades for #{symbol}")
 

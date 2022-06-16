@@ -14,8 +14,8 @@ defmodule Trader.Schemas.Symbol do
 
   def changeset(changeset, params \\ %{}) do
     changeset
-    |> cast(params, [:symbol])
-    |> validate_required([:symbol])
+    |> cast(params, [:platform, :symbol, :event_type])
+    |> validate_required([:platform, :symbol, :event_type])
     |> unique_constraint([:platform, :symbol, :event_type],
       message: "Symbol already exists for this platform and event type"
     )

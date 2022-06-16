@@ -12,7 +12,8 @@ defmodule Trader.Application do
       {Registry, [keys: :unique, name: :mercado_bitcoin_workers]},
       Trader.Repo,
       {Trader.Binance.DynamicSupervisor, []},
-      {Trader.MercadoBitcoin.DynamicSupervisor, []}
+      {Trader.MercadoBitcoin.DynamicSupervisor, []},
+      {Task, fn -> Trader.init() end}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
