@@ -155,7 +155,7 @@ defmodule Trader do
 
   ## Examples
   ```elixir
-    Trader.ticker({:mercado_bitcoin, "btc"})
+    iex(2)> Trader.ticker({:mercado_bitcoin, "btc"})
 
     18:04:10.013 [info] @MercadoBitcoin - Starting link for ticker for btc
 
