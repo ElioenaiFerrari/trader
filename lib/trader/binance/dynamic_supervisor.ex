@@ -12,14 +12,10 @@ defmodule Trader.Binance.DynamicSupervisor do
   end
 
   def trades(symbol) do
-    Logger.info("Starting link for trades for #{symbol}")
-
     DynamicSupervisor.start_child(__MODULE__, {Trader.Binance, {"@trade", symbol}})
   end
 
   def ticker(symbol) do
-    Logger.info("Starting link for trades for #{symbol}")
-
     DynamicSupervisor.start_child(__MODULE__, {Trader.Binance, {"@miniTicker", symbol}})
   end
 end

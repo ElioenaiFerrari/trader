@@ -12,14 +12,10 @@ defmodule Trader.MercadoBitcoin.DynamicSupervisor do
   end
 
   def ticker(symbol) do
-    Logger.info("Starting link for ticker for #{symbol}")
-
     DynamicSupervisor.start_child(__MODULE__, {Trader.MercadoBitcoin, {:ticker, symbol}})
   end
 
   def trades(symbol) do
-    Logger.info("Starting link for trades for #{symbol}")
-
     DynamicSupervisor.start_child(__MODULE__, {Trader.MercadoBitcoin, {:trades, symbol}})
   end
 end

@@ -13,9 +13,7 @@ defmodule Trader.MercadoBitcoin do
   end
 
   @impl true
-  def init(state) do
-    {:ok, state}
-  end
+  def init(state), do: {:ok, state}
 
   @impl true
   def handle_info({:ticker, symbol}, state) do
