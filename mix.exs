@@ -25,7 +25,9 @@ defmodule Trader.MixProject do
       {:jason, "~> 1.3"},
       {:websockex, "~> 0.4.3"},
       {:number, "~> 1.0"},
-      {:httpoison, "~> 1.8"}
+      {:httpoison, "~> 1.8"},
+      {:ecto, "~> 3.8"},
+      {:ecto_sqlite3, "~> 0.7.5"}
     ]
   end
 end
