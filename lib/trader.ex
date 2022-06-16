@@ -192,7 +192,7 @@ defmodule Trader do
 
   ## Examples
   ```elixir
-    Trader.ticker({:mercado_bitcoin, "btc"})
+    iex(2)> Trader.ticker({:mercado_bitcoin, "btc"})
 
     18:06:12.796 [info] @MercadoBitcoin - Starting link for ticker for btc
 
@@ -241,7 +241,7 @@ defmodule Trader do
 
   ## Examples
   ```elixir
-    Trader.ticker({:binance, "btc"})
+    iex(2)> Trader.ticker({:binance, "btc"})
 
     18:06:12.796 [info] @Binance - Starting link for ticker for btc
 
