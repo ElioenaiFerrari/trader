@@ -5,13 +5,24 @@ defmodule Trader.Binance do
 
   alias Trader.Binance.{Trade, Ticker}
 
-  def start_link({event, symbol}) do
+  defp via_tuple({event_type, symbol}) do
+    {:via, Registry, {:binance_workers, "#{symbol}@#{event_type}"}}
+  end
+
+  def start_link({event_type, symbol}) do
     {:ok, base_url} = Application.fetch_env(:trader, :binance_stream_base_url)
 
-    WebSockex.start_link("#{base_url}#{String.downcase(symbol)}#{event}", __MODULE__, %{
-      event: event,
-      symbol: symbol
-    })
+    IO.puts("#{base_url}#{symbol}#{event_type}")
+
+    WebSockex.start_link(
+      "#{base_url}#{symbol}#{event_type}",
+      __MODULE__,
+      %{
+        event_type: event_type,
+        symbol: symbol
+      },
+      name: via_tuple({event_type, symbol})
+    )
   end
 
   def handle_frame({_type, msg}, state) do

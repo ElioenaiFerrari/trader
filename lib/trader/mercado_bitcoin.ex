@@ -5,11 +5,16 @@ defmodule Trader.MercadoBitcoin do
 
   alias Trader.MercadoBitcoin.{Ticker, Trade}
 
-  def start_link(params) do
+  defp via_tuple({event_type, symbol}) do
+    {:via, Registry, {:mercado_bitcoin_workers, "#{symbol}@#{event_type}"}}
+  end
+
+  def start_link({event_type, symbol}) do
     HTTPoison.start()
 
-    GenServer.start_link(__MODULE__, [], name: __MODULE__)
-    :timer.send_interval(1000, __MODULE__, params)
+    {:ok, pid} = GenServer.start_link(__MODULE__, [], name: via_tuple({event_type, symbol}))
+
+    :timer.send_interval(1000, pid, {event_type, symbol})
   end
 
   @impl true

@@ -8,6 +8,8 @@ defmodule Trader.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      {Registry, [keys: :unique, name: :binance_workers]},
+      {Registry, [keys: :unique, name: :mercado_bitcoin_workers]},
       Trader.Repo,
       {Trader.Binance.DynamicSupervisor, []},
       {Trader.MercadoBitcoin.DynamicSupervisor, []}
