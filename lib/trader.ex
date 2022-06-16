@@ -32,7 +32,7 @@ defmodule Trader do
 
   ## Examples
   ```elixir
-    Trader.trades({:binance, "neousdt"})
+    iex(2)> Trader.trades({:binance, "neousdt"})
 
     17:58:46.825 [info] @Binance - Starting link for trades for neousdt
 
