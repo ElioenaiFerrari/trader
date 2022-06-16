@@ -12,8 +12,6 @@ defmodule Trader.Binance do
   def start_link({event_type, symbol}) do
     {:ok, base_url} = Application.fetch_env(:trader, :binance_stream_base_url)
 
-    IO.puts("#{base_url}#{symbol}#{event_type}")
-
     WebSockex.start_link(
       "#{base_url}#{symbol}#{event_type}",
       __MODULE__,

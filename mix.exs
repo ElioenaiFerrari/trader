@@ -7,7 +7,13 @@ defmodule Trader.MixProject do
       version: "0.1.0",
       elixir: "~> 1.14-dev",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      docs: [
+        # The main page in the docs
+        main: "Trader",
+        logo: "assets/logo.png",
+        extras: ["README.md"]
+      ]
     ]
   end
 
@@ -27,7 +33,9 @@ defmodule Trader.MixProject do
       {:number, "~> 1.0"},
       {:httpoison, "~> 1.8"},
       {:ecto, "~> 3.8"},
-      {:ecto_sqlite3, "~> 0.7.5"}
+      {:ecto_sqlite3, "~> 0.7.5"},
+      {:mock, "~> 0.3.7"},
+      {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]
   end
 end
